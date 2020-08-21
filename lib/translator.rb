@@ -1,7 +1,7 @@
 require "yaml"
 
-def load_library(emoticon_files)
-      emoticons = YAML.load_file(emoticon_files)
+def load_library(emoticon_file)
+      emoticons = YAML.load_file(emoticon_file)
       new_hash = {}
       emoticons.each do |key, value|
         new_hash[key] = {english: value[0], japanese: value[1]}
@@ -9,8 +9,8 @@ def load_library(emoticon_files)
       new_hash
 end
 
-def get_japanese_emoticon(emoticon_files, emoticon)
-  emoticons = load_library(emoticon_files)
+def get_japanese_emoticon(emoticon_file, emoticon)
+  emoticons = load_library(emoticon_file)
   
   emoticons.each do |key, value|
     if emoticon == value[:english]
@@ -21,8 +21,8 @@ def get_japanese_emoticon(emoticon_files, emoticon)
   return "Sorry, that emoticon was not found"
 end
 
-def get_english_meaning(emoticon_files, emoticon)
-  emoticons = load_library(emoticon_files)
+def get_english_meaning(emoticon_file, emoticon)
+  emoticons = load_library(emoticon_file)
   
   emoticons.each do |key, value| 
     if emoticon == value[:japanese]
