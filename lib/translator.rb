@@ -1,7 +1,7 @@
 require 'yaml'
 
 def load_library (file_path)
-  require "yaml"
+  
   emojis = YAML.load_file(file_path)
   translator_hash = {:get_meaning => {}, :get_emoticon => {}}
   emojis.each do |meaning_key, emoticons_value|
