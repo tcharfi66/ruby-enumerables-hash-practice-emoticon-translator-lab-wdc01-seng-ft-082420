@@ -1,41 +1,31 @@
 require "yaml"
+require 'pry'# require modules here
 
-def load_library(file)
-  emoticons = YAML.load_file(file)
-  library = {
-    :get_meaning => {},
-    :get_emoticon => {}
-  }
-  emoticons.each_pair{|key, value| 
-    if library[:get_meaning]
-      library[:get_meaning][value[1]] = key
-    else
-      library[:get_meaning] = { value[1] => key }
-    end
-    
-    if library[:get_emoticon]
-      library[:get_emoticon][value[0]] = value[1]
-    else
-      library[:get_emoticon] = { value[0] => value[1] }
-    end
-  }
-  library
-end
+def load_library(emoticon_files)
+  emoticons = YAML.load_file(emoticon_files)
+  new_hash = {}
+  emoticons.each do |key, value|
+    new_hash[key] = {english: value[0], japanese: value[1]}
+ end
+ new_hash
+ end
 
-def get_japanese_emoticon(file, emoticon)
-  library = load_library(file)
-  if library[:get_emoticon][emoticon]
-    return library[:get_emoticon][emoticon]
-  else
-    return "Sorry, that emoticon was not found"
+def get_japanese_emoticon(emoticon_files, emoticon)
+  emoticons = load_library(emoticon_files)
+  emoticons.each do |key, value|
+    if emoticon == value[:english]
+      return value[:japanese]
   end
 end
+return "Sorry, that emoticon was not found"
+end
 
-def get_english_meaning(file, meaning)
-  library = load_library(file)
-  if library[:get_meaning][meaning]
-    return library[:get_meaning][meaning]
-  else
-    return "Sorry, that emoticon was not found"
+def get_english_meaning(emoticon_files, emoticon)
+  emoticons = load_library(emoticon_files)
+  emoticons.each do |key, value| 
+    if emoticon == value[:japanese]
+      return key
   end
+end
+return "Sorry, that emoticon was not found"
 end
