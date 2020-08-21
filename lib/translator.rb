@@ -6,6 +6,7 @@ def load_library(yaml_file)
       response["get_meaning"][emos[1]] = trans
       response["get_emoticon"][emos[0]] = emos[1]
     end
+    
     response
 end
 
