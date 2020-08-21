@@ -2,8 +2,7 @@
 require 'pry'
 require 'yaml'
 
-def load_library
-  # code goes here
+
 def load_library(file_path)
   library = YAML.load_file(file_path)
   result = {"get_meaning" => {}, "get_emoticon" => {}}
@@ -27,8 +26,7 @@ def get_japanese_emoticon(file_path = './lib/emoticons.yml', english_emoticon)
   end
 end
 
-def get_english_meaning
-  # code goes here
+
 def get_english_meaning(file_path = './lib/emoticons.yml', japanese_emoticon)
   library = load_library(file_path)
   if library["get_meaning"].include?(japanese_emoticon) 
