@@ -1,12 +1,14 @@
 require 'yaml'
-def load_library(yaml_file)
-    response = {"get_meaning" => {}, "get_emoticon" => {}}
-    library = YAML.load_file(yaml_file)
-    library.each do |trans, emos|
-      response["get_meaning"][emos[1]] = trans
-      response["get_emoticon"][emos[0]] = emos[1]
-    end
-    response
+
+def load_library (file_path)
+  require "yaml"
+  emojis = YAML.load_file(file_path)
+  translator_hash = {:get_meaning => {}, :get_emoticon => {}}
+  emojis.each do |meaning_key, emoticons_value|
+    (translator_hash[:get_meaning])[emoticons_value[1]] = meaning_key
+    (translator_hash[:get_emoticon])[emoticons_value[0]] = emoticons_value[1]
+  end
+return translator_hash
 end
 
 
