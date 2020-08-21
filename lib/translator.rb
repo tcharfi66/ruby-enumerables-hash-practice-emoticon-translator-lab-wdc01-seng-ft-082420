@@ -1,10 +1,7 @@
-# require modules here
-
-require 'yaml'
-
+require "yaml"
 
 def load_library(file)
- emoticons = YAML.load_file(file)
+  emoticons = YAML.load_file(file)
   library = {
     :get_meaning => {},
     :get_emoticon => {}
@@ -25,23 +22,20 @@ def load_library(file)
   library
 end
 
-
-
-def get_japanese_emoticon(file_path = './lib/emoticons.yml', english_emoticon)
-  library = load_library(file_path)
-  if library["get_emoticon"].include?(english_emoticon) 
-    library["get_emoticon"][english_emoticon]
+def get_japanese_emoticon(file, emoticon)
+  library = load_library(file)
+  if library[:get_emoticon][emoticon]
+    return library[:get_emoticon][emoticon]
   else
-    "Sorry, that emoticon was not found"
+    return "Sorry, that emoticon was not found"
   end
 end
 
-
-def get_english_meaning(file_path = './lib/emoticons.yml', japanese_emoticon)
-  library = load_library(file_path)
-  if library["get_meaning"].include?(japanese_emoticon) 
-    library["get_meaning"][japanese_emoticon]
+def get_english_meaning(file, meaning)
+  library = load_library(file)
+  if library[:get_meaning][meaning]
+    return library[:get_meaning][meaning]
   else
-    "Sorry, that emoticon was not found"
+    return "Sorry, that emoticon was not found"
   end
-end 
+end
