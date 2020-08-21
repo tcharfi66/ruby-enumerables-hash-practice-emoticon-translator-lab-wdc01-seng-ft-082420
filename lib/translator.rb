@@ -1,13 +1,13 @@
 require "yaml"
 
 def load_library(emoticon_files)
-  emoticons = YAML.load_file(emoticon_files)
-  new_hash = {}
-  emoticons.each do |key, value|
-    new_hash[key] = {english: value[0], japanese: value[1]}
- end
- new_hash
- end
+      emoticons = YAML.load_file(emoticon_files)
+      new_hash = {}
+      emoticons.each do |key, value|
+        new_hash[key] = {english: value[0], japanese: value[1]}
+      end
+       new_hash
+       end
 
 def get_japanese_emoticon(emoticon_files, emoticon)
   emoticons = load_library(emoticon_files)
